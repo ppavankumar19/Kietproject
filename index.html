@@ -560,23 +560,23 @@
     <script>
         // Supabase Configuration
         const SUPABASE_URL = 'https://llympyfpcssbfnphsucb.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxseW1weWZwY3NzYmZucGhzdWNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0NDE5MTUsImV4cCI6MjA1NTAxNzkxNX0.4S6SBjyO-JCMvJM_hAzZZGN8CwU5SkW1rGZvWNuHX_s';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxseW1weWZwY3NzYmZucGhzdWNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3ODM5MjIsImV4cCI6MjA4NjM1OTkyMn0.1j2a641dlZkRoOsXzDYgfTxZ29fmAKxxENBK1uuZxIw';
         
-        // Initialize Supabase client
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Initialize Supabase client (renamed to avoid conflicts)
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
         let studentsData = [];
         let currentPage = 1;
         const studentsPerPage = 10;
         let isRandomMode = false;
 
-        // Load students data from Supabase using getPublicUrl
+        // Load students data from Supabase
         async function loadStudents() {
             try {
                 console.log('Loading students from Supabase...');
                 
                 // Get public URL for JSON file
-                const { data: urlData } = supabase.storage
+                const { data: urlData } = supabaseClient.storage
                     .from('data')
                     .getPublicUrl('students_data.json');
                 
@@ -596,7 +596,7 @@
                 // Update image URLs using getPublicUrl
                 studentsData = studentsData.map(student => {
                     const imagePath = student.image.replace('student_images/', '');
-                    const { data: imageUrlData } = supabase.storage
+                    const { data: imageUrlData } = supabaseClient.storage
                         .from('student-images')
                         .getPublicUrl(imagePath);
                     
@@ -621,10 +621,10 @@
                     `<div class="loading">
                         <p style="color: #f59e0b; font-size: 1.2rem; font-weight: 600;">⚠️ Error loading testimonials</p>
                         <p style="font-size: 0.95rem; margin-top: 1rem;">Error: ${error.message}</p>
-                        <p style="font-size: 0.85rem; margin-top: 1rem;">Please check:</p>
-                        <p style="font-size: 0.85rem;">1. Storage buckets exist and are public</p>
+                        <p style="font-size: 0.85rem; margin-top: 1rem;">Steps to fix:</p>
+                        <p style="font-size: 0.85rem;">1. Make sure buckets "data" and "student-images" are PUBLIC</p>
                         <p style="font-size: 0.85rem;">2. Files are uploaded correctly</p>
-                        <p style="font-size: 0.85rem;">3. Browser console (F12) for details</p>
+                        <p style="font-size: 0.85rem;">3. Check browser console (F12) for details</p>
                     </div>`;
             }
         }
