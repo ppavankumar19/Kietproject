@@ -4,841 +4,770 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Testimonials - AI Karyashala Bootcamp</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Crimson+Pro:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <style>
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --success-color: #10b981;
-            --bg-light: #fafbfc;
-            --bg-white: #ffffff;
-            --text-dark: #1a202c;
-            --text-medium: #4a5568;
-            --text-light: #718096;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15);
-            --star-gold: #f59e0b;
+            --indigo: #4f46e5;
+            --indigo-light: #818cf8;
+            --indigo-pale: #eef2ff;
+            --violet: #7c3aed;
+            --rose: #f43f5e;
+            --amber: #f59e0b;
+            --green: #10b981;
+            --surface: #ffffff;
+            --bg: #f5f6fa;
+            --text-1: #111827;
+            --text-2: #374151;
+            --text-3: #6b7280;
+            --border: #e5e7eb;
+            --shadow-xs: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.16);
+            --radius: 18px;
+            --radius-sm: 10px;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-1);
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        /* Hero Banner */
-        .hero-banner {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 5rem 2rem 4rem;
-            text-align: center;
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(150deg, #1e1b4b 0%, #312e81 40%, #4c1d95 100%);
             position: relative;
             overflow: hidden;
+            padding: 3.5rem 1.25rem 3rem;
+            text-align: center;
         }
 
-        .hero-banner::before {
+        .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 15% 20%, rgba(99,102,241,0.35) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 60% at 85% 75%, rgba(124,58,237,0.28) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        .hero-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+        /* Decorative dots */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
         }
 
-        .badge {
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-pill {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            padding: 0.6rem 1.5rem;
+            gap: 6px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.45rem 1.1rem;
             border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
         }
 
         .hero-title {
-            font-family: 'Crimson Pro', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: #fff;
             font-weight: 700;
-            margin-bottom: 1.25rem;
             line-height: 1.15;
-            letter-spacing: -0.02em;
+            margin-bottom: 0.9rem;
         }
 
-        .hero-description {
-            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-            opacity: 0.95;
-            max-width: 750px;
-            margin: 0 auto 3rem;
+        .hero-subtitle {
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: rgba(255,255,255,0.75);
+            line-height: 1.65;
+            margin-bottom: 2.5rem;
             font-weight: 400;
-            line-height: 1.7;
         }
 
-        /* Stats Section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+        /* ── STATS ── */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            padding: 2rem 1.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            padding: 1.4rem 2rem;
+            min-width: 140px;
+            flex: 1;
+            max-width: 220px;
         }
 
         .stat-value {
-            font-size: 3rem;
+            font-size: 2.4rem;
             font-weight: 800;
+            color: #fff;
             display: block;
-            margin-bottom: 0.5rem;
             line-height: 1;
+            margin-bottom: 0.3rem;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.02em;
         }
 
         .stat-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.65);
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            font-weight: 600;
         }
 
-        /* Container */
-        .main-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+        /* Stars displayed in hero */
+        .hero-stars {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            justify-content: center;
+            margin-top: 0.5rem;
         }
 
-        /* Section Header */
-        .section-header {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
-        }
-
-        .section-subtitle {
+        .hstar {
             font-size: 1.1rem;
-            color: var(--text-light);
+            color: var(--amber);
+            text-shadow: 0 0 8px rgba(245,158,11,0.5);
         }
 
-        /* Control Bar */
-        .control-bar {
+        /* ── MAIN CONTAINER ── */
+        .main {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 2.5rem 1rem 3rem;
+        }
+
+        /* ── SECTION HEADER ── */
+        .sec-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .sec-title {
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: var(--text-1);
+            margin-bottom: 0.35rem;
+        }
+
+        .sec-sub {
+            font-size: 0.95rem;
+            color: var(--text-3);
+        }
+
+        /* ── SHUFFLE BUTTON ── */
+        .controls {
             display: flex;
             justify-content: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .shuffle-btn {
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            padding: 1.1rem 2.5rem;
-            border-radius: 14px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            transition: all 0.35s ease;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
-            font-family: 'Poppins', sans-serif;
+            gap: 0.55rem;
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
+            color: #fff;
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(79,70,229,0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            letter-spacing: 0.01em;
         }
 
         .shuffle-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.45);
+            box-shadow: 0 10px 28px rgba(79,70,229,0.45);
         }
 
         .shuffle-btn:active {
             transform: translateY(-1px);
         }
 
-        .shuffle-icon {
-            font-size: 1.4rem;
+        .dice {
+            font-size: 1.15rem;
+            transition: transform 0.4s ease;
             display: inline-block;
-            transition: transform 0.3s ease;
         }
 
-        .shuffle-btn:hover .shuffle-icon {
+        .shuffle-btn:hover .dice {
             transform: rotate(180deg);
         }
 
-        /* Testimonials Grid */
-        .testimonials-grid {
+        /* ── GRID ── */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
         }
 
-        /* Testimonial Card */
-        .testimonial-card {
-            background: var(--bg-white);
-            border-radius: 24px;
+        /* ── CARD ── */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1.5px solid var(--border);
+            box-shadow: var(--shadow-xs);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        .testimonial-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-lg);
-            border-color: #667eea;
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--indigo-light);
         }
 
-        /* Review Section */
-        .review-section {
-            padding: 2.5rem;
-            background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
-            position: relative;
+        /* Review section */
+        .card-review {
+            padding: 1.25rem 1.25rem 1rem;
             flex: 1;
+            position: relative;
         }
 
-        .quote-mark {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-gradient);
-            border-radius: 12px;
+        .q-icon {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.25);
-        }
-
-        .quote-mark svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
-        }
-
-        .review-content {
-            font-size: 1.08rem;
-            line-height: 1.75;
-            color: var(--text-dark);
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            min-height: 120px;
-        }
-
-        /* Star Rating */
-        .star-rating {
-            display: flex;
-            gap: 0.3rem;
-        }
-
-        .star {
-            font-size: 1.4rem;
-            color: var(--star-gold);
-            text-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
-        }
-
-        .star.empty {
-            color: #d1d5db;
-            text-shadow: none;
-        }
-
-        /* Student Info Section */
-        .student-info-section {
-            padding: 2rem 2.5rem;
-            background: white;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
-
-        .student-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg-light);
-            box-shadow: var(--shadow-sm);
+            margin-bottom: 0.9rem;
             flex-shrink: 0;
         }
 
-        .student-details {
+        .q-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        .review-text {
+            font-size: 0.93rem;
+            line-height: 1.7;
+            color: var(--text-2);
+            font-weight: 500;
+        }
+
+        /* Student section */
+        .card-student {
+            padding: 0.9rem 1.25rem;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--surface);
+            box-shadow: var(--shadow-xs);
+            flex-shrink: 0;
+        }
+
+        .student-meta {
             flex: 1;
             min-width: 0;
         }
 
-        .student-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 0.3rem;
-        }
-
-        .student-roll {
+        .s-name {
             font-size: 0.9rem;
-            color: var(--text-medium);
-            font-weight: 500;
-            margin-bottom: 0.6rem;
+            font-weight: 700;
+            color: var(--text-1);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0.15rem;
         }
 
-        .student-badge {
+        .s-roll {
+            font-size: 0.78rem;
+            color: var(--text-3);
+            font-weight: 500;
+            margin-bottom: 0.35rem;
+        }
+
+        .s-badge {
             display: inline-block;
-            padding: 0.35rem 0.9rem;
-            background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
-            border-radius: 8px;
-            font-size: 0.8rem;
+            padding: 0.22rem 0.6rem;
+            background: var(--indigo-pale);
+            color: var(--indigo);
+            border-radius: 6px;
+            font-size: 0.7rem;
             font-weight: 700;
-            color: #667eea;
             text-transform: uppercase;
             letter-spacing: 0.04em;
         }
 
-        /* Pagination */
-        .pagination-container {
+        /* ── PAGINATION ── */
+        .pagination {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 1.25rem;
-            margin: 4rem 0 2rem;
+            justify-content: center;
+            gap: 0.5rem;
             flex-wrap: wrap;
+            padding: 0.5rem 0;
         }
 
-        .pagination-btn {
-            background: white;
-            border: 2px solid var(--border-color);
-            color: var(--text-dark);
-            padding: 0.85rem 1.75rem;
-            border-radius: 12px;
+        .pg-btn {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            color: var(--text-2);
+            padding: 0.55rem 1.1rem;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 1rem;
-            box-shadow: var(--shadow-sm);
-            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: var(--shadow-xs);
+            transition: all 0.22s ease;
+            white-space: nowrap;
         }
 
-        .pagination-btn:hover:not(:disabled) {
-            background: var(--primary-gradient);
+        .pg-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
             border-color: transparent;
             color: white;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .pagination-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .page-numbers-container {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-
-        .page-num {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 1rem;
             box-shadow: var(--shadow-sm);
-        }
-
-        .page-num:hover {
-            background: var(--bg-light);
-            border-color: #667eea;
             transform: translateY(-2px);
         }
 
-        .page-num.active {
-            background: var(--primary-gradient);
+        .pg-btn:disabled {
+            opacity: 0.38;
+            cursor: not-allowed;
+        }
+
+        .pg-nums {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .pg-num {
+            width: 38px;
+            height: 38px;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-2);
+            box-shadow: var(--shadow-xs);
+            transition: all 0.22s ease;
+            flex-shrink: 0;
+        }
+
+        .pg-num:hover {
+            border-color: var(--indigo-light);
+            color: var(--indigo);
+            transform: translateY(-2px);
+        }
+
+        .pg-num.active {
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
             border-color: transparent;
             color: white;
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+            box-shadow: 0 4px 12px rgba(79,70,229,0.38);
         }
 
-        .page-indicator {
-            color: var(--text-light);
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 0 1rem;
-        }
-
-        /* Loading State */
-        .loading-state {
-            text-align: center;
-            padding: 6rem 2rem;
-        }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 5px solid var(--border-color);
-            border-top-color: #667eea;
-            border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-            margin: 0 auto 2rem;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loading-message {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        /* Error State */
-        .error-state {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: white;
-            border-radius: 24px;
-            max-width: 650px;
-            margin: 3rem auto;
-            box-shadow: var(--shadow-md);
-        }
-
-        .error-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .error-heading {
-            font-size: 1.75rem;
+        .pg-dots {
+            color: var(--text-3);
             font-weight: 700;
-            color: #ef4444;
-            margin-bottom: 1rem;
-        }
-
-        .error-text {
-            color: var(--text-medium);
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .error-info {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 12px;
             font-size: 0.9rem;
-            color: var(--text-light);
-            text-align: left;
-            border-left: 4px solid #ef4444;
+            width: 28px;
+            text-align: center;
+            user-select: none;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-banner {
-                padding: 4rem 1.5rem 3rem;
-            }
-
-            .hero-title {
-                font-size: 2.25rem;
-            }
-
-            .hero-description {
-                font-size: 1.05rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .stat-value {
-                font-size: 2.5rem;
-            }
-
-            .main-container {
-                padding: 3rem 1rem;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .review-section {
-                padding: 2rem;
-            }
-
-            .review-content {
-                font-size: 1rem;
-                min-height: auto;
-            }
-
-            .shuffle-btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-
-            .section-header {
-                margin-bottom: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
+        /* ── LOADING ── */
+        .loading-wrap {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 5rem 1rem;
         }
 
-        @media (max-width: 480px) {
-            .stat-value {
-                font-size: 2rem;
-            }
+        .spinner {
+            width: 46px;
+            height: 46px;
+            border: 4px solid var(--border);
+            border-top-color: var(--indigo);
+            border-radius: 50%;
+            animation: spin 0.85s linear infinite;
+            margin: 0 auto 1.25rem;
+        }
 
-            .stat-label {
-                font-size: 0.85rem;
-            }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-            .student-avatar {
-                width: 60px;
-                height: 60px;
-            }
+        .loading-txt {
+            color: var(--text-3);
+            font-size: 1rem;
+            font-weight: 600;
+        }
 
-            .student-name {
-                font-size: 1rem;
-            }
+        /* ── ERROR ── */
+        .err-wrap {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 1rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+            max-width: 580px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-sm);
+        }
 
-            .student-roll {
-                font-size: 0.85rem;
-            }
+        .err-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .err-title { font-size: 1.5rem; font-weight: 800; color: var(--rose); margin-bottom: 0.75rem; }
+        .err-body { color: var(--text-3); line-height: 1.65; margin-bottom: 1.25rem; font-size: 0.95rem; }
+        .err-detail {
+            background: var(--bg); padding: 1rem; border-radius: 10px;
+            font-size: 0.82rem; color: var(--text-3); text-align: left;
+            border-left: 4px solid var(--rose);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .hero { padding: 3rem 1rem 2.5rem; }
+            .stat-card { padding: 1.1rem 1.4rem; min-width: 120px; }
+            .stat-value { font-size: 1.9rem; }
+            .main { padding: 1.75rem 0.75rem 2.5rem; }
+            .grid { grid-template-columns: 1fr; gap: 1rem; }
+            .card-review { padding: 1rem 1rem 0.85rem; }
+            .card-student { padding: 0.8rem 1rem; }
+            .avatar { width: 44px; height: 44px; }
+            .s-name { font-size: 0.85rem; }
+            .pg-num { width: 34px; height: 34px; font-size: 0.8rem; }
+            .pg-btn { padding: 0.5rem 0.85rem; font-size: 0.8rem; }
+            .shuffle-btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+            .sec-title { font-size: 1.35rem; }
+        }
+
+        @media (max-width: 400px) {
+            .stats-row { gap: 0.75rem; }
+            .stat-card { padding: 1rem 1.1rem; }
+            .stat-value { font-size: 1.6rem; }
+        }
+
+        /* fade-in on load */
+        .card {
+            animation: fadeUp 0.4s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Banner -->
-    <div class="hero-banner">
-        <div class="hero-content">
-            <div class="badge">
-                <span>⭐</span>
-                <span>Authentic Student Reviews</span>
+
+<!-- ── HERO ── -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-pill">⭐ Authentic Student Reviews</div>
+        <h1 class="hero-title">What Our Students Say</h1>
+        <p class="hero-subtitle">
+            Discover how AI Karyashala Bootcamp has transformed the careers and lives of hundreds of students across India
+        </p>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <span class="stat-value" id="totalStudents">0</span>
+                <span class="stat-label">Total Reviews</span>
             </div>
-            <h1 class="hero-title">What Our Students Say</h1>
-            <p class="hero-description">
-                Discover how AI Karyashala Bootcamp has transformed the careers and lives of hundreds of students across India
-            </p>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-value" id="totalStudents">0</span>
-                    <span class="stat-label">Total Reviews</span>
+            <div class="stat-card">
+                <span class="stat-value" id="averageRating">0.0</span>
+                <div class="hero-stars" id="heroStars">
+                    <span class="hstar">★</span><span class="hstar">★</span><span class="hstar">★</span>
+                    <span class="hstar">★</span><span class="hstar">★</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-value" id="averageRating">0.0</span>
-                    <span class="stat-label">Average Rating</span>
-                </div>
+                <span class="stat-label">Average Rating</span>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Main Content -->
-    <div class="main-container">
-        <!-- Section Header -->
-        <div class="section-header">
-            <h2 class="section-title">Student Testimonials</h2>
-            <p class="section-subtitle">Real experiences from real students</p>
-        </div>
-
-        <!-- Control Bar -->
-        <div class="control-bar">
-            <button class="shuffle-btn" onclick="showRandomProfiles()">
-                <span class="shuffle-icon">🎲</span>
-                <span>Show 10 Random Reviews</span>
-            </button>
-        </div>
-
-        <!-- Testimonials Grid -->
-        <div id="testimonials-container" class="testimonials-grid">
-            <div class="loading-state">
-                <div class="loader"></div>
-                <p class="loading-message">Loading testimonials...</p>
-            </div>
-        </div>
-
-        <!-- Pagination -->
-        <div class="pagination-container" id="pagination"></div>
+<!-- ── MAIN ── -->
+<div class="main">
+    <div class="sec-header">
+        <h2 class="sec-title">Student Testimonials</h2>
+        <p class="sec-sub">Real experiences from real students</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-        // Supabase Configuration
-        const SUPABASE_URL = 'https://pwghpxxfejmxvwhdjkda.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3Z2hweHhmZWpteHZ3aGRqa2RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3OTE2ODUsImV4cCI6MjA4NjM2NzY4NX0.eU-k1WuDN01cHZ4wibMwNhJkPz6JfrfqJqbed7yPKEY';
+    <div class="controls">
+        <button class="shuffle-btn" onclick="showRandomProfiles()">
+            <span class="dice">🎲</span>
+            Show 10 Random Reviews
+        </button>
+    </div>
 
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    <div id="grid" class="grid">
+        <div class="loading-wrap">
+            <div class="spinner"></div>
+            <p class="loading-txt">Loading testimonials…</p>
+        </div>
+    </div>
 
-        let studentsData = [];
-        let currentPage = 1;
-        const studentsPerPage = 10;
-        let isRandomMode = false;
+    <div id="pagination" class="pagination"></div>
+</div>
 
-        // Load students data
-        async function loadStudents() {
-            try {
-                console.log('Loading students from Supabase...');
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ── CONFIG ──
+const SUPABASE_URL      = 'https://pwghpxxfejmxvwhdjkda.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3Z2hweHhmZWpteHZ3aGRqa2RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3OTE2ODUsImV4cCI6MjA4NjM2NzY4NX0.eU-k1WuDN01cHZ4wibMwNhJkPz6JfrfqJqbed7yPKEY';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-                const { data: urlData } = supabaseClient.storage
-                    .from('data')
-                    .getPublicUrl('students_data.json');
+let students = [];
+let page = 1;
+const PER_PAGE = 10;
+let randomMode = false;
 
-                const response = await fetch(urlData.publicUrl);
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                studentsData = await response.json();
-
-                console.log(`✓ Loaded ${studentsData.length} students successfully!`);
-
-                // Update image URLs
-                studentsData = studentsData.map(student => {
-                    const imagePath = (student.image || '').replace('student_images/', '');
-                    const { data: imageUrlData } = supabaseClient.storage
-                        .from('student-images')
-                        .getPublicUrl(imagePath);
-
-                    return {
-                        ...student,
-                        image: imageUrlData.publicUrl
-                    };
-                });
-
-                // Update stats
-                document.getElementById('totalStudents').textContent = studentsData.length;
-
-                const safeLen = studentsData.length || 1;
-                const avgRating = (studentsData.reduce((sum, s) => sum + (Number(s.rating) || 0), 0) / safeLen).toFixed(1);
-                document.getElementById('averageRating').textContent = avgRating;
-
-                displayStudents();
-            } catch (error) {
-                console.error('❌ Error loading students:', error);
-                document.getElementById('testimonials-container').innerHTML = `
-                    <div class="error-state">
-                        <div class="error-icon">⚠️</div>
-                        <h2 class="error-heading">Unable to Load Testimonials</h2>
-                        <p class="error-text">We're experiencing technical difficulties. Please refresh the page or try again later.</p>
-                        <div class="error-info">
-                            <strong>Error Details:</strong><br>
-                            ${error.message}
-                        </div>
-                    </div>
-                `;
-            }
+// ── COUNTER ANIMATION ──
+function animateCounter(el, start, end, duration, isFloat, suffix) {
+    const startTime = performance.now();
+    function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // ease-out quad
+        const eased = 1 - (1 - progress) * (1 - progress);
+        const current = start + (end - start) * eased;
+        if (isFloat) {
+            el.textContent = current.toFixed(1) + (progress === 1 ? suffix : '');
+        } else {
+            el.textContent = Math.floor(current) + (progress === 1 ? suffix : '');
         }
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
 
-        // Shuffle array
-        function shuffleArray(array) {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
+// ── HERO STARS ──
+function renderHeroStars(rating) {
+    const container = document.getElementById('heroStars');
+    const r = Math.round(rating);
+    container.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        const s = document.createElement('span');
+        s.className = 'hstar';
+        s.style.color = i <= r ? '' : 'rgba(255,255,255,0.25)';
+        s.textContent = '★';
+        container.appendChild(s);
+    }
+}
 
-        // Show random profiles
-        function showRandomProfiles() {
-            if (studentsData.length === 0) {
-                alert('Please wait for data to load first!');
-                return;
-            }
+// ── LOAD ──
+async function loadStudents() {
+    try {
+        const { data: urlData } = sb.storage.from('data').getPublicUrl('students_data.json');
+        const res = await fetch(urlData.publicUrl);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        students = await res.json();
 
-            isRandomMode = true;
-            const shuffled = shuffleArray(studentsData);
-            const randomStudents = shuffled.slice(0, 10);
+        // Resolve image URLs
+        students = students.map(s => {
+            const imgPath = (s.image || '').replace('student_images/', '');
+            const { data: imgUrl } = sb.storage.from('student-images').getPublicUrl(imgPath);
+            return { ...s, image: imgUrl.publicUrl };
+        });
 
-            displayStudentsArray(randomStudents);
-            document.getElementById('pagination').style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        const total = students.length;
+        const avgRaw = students.reduce((a, s) => a + (Number(s.rating) || 0), 0) / (total || 1);
 
-        // Clean roll number
-        function cleanRollNumber(rollNumber) {
-            return String(rollNumber || '').replace(/^AIK/, '');
-        }
+        // Animate counters
+        animateCounter(document.getElementById('totalStudents'), 0, total, 1600, false, '+');
+        animateCounter(document.getElementById('averageRating'),  0, avgRaw, 1600, true,  '');
+        renderHeroStars(avgRaw);
 
-        // Create stars HTML
-        function createStars(rating) {
-            const r = Number(rating) || 0;
-            let stars = '';
-            for (let i = 1; i <= 5; i++) {
-                stars += `<span class="star ${i <= r ? '' : 'empty'}">★</span>`;
-            }
-            return stars;
-        }
+        displayStudents();
+    } catch (err) {
+        document.getElementById('grid').innerHTML = `
+            <div class="err-wrap">
+                <div class="err-icon">⚠️</div>
+                <h2 class="err-title">Unable to Load Testimonials</h2>
+                <p class="err-body">We're experiencing technical difficulties. Please refresh the page or try again later.</p>
+                <div class="err-detail"><strong>Error:</strong> ${err.message}</div>
+            </div>`;
+    }
+}
 
-        // Display students array
-        function displayStudentsArray(students) {
-            const container = document.getElementById('testimonials-container');
+// ── HELPERS ──
+function cleanRoll(r) { return String(r || '').replace(/^AIK/, ''); }
 
-            if (!students || students.length === 0) {
-                container.innerHTML = '<div class="loading-state"><p class="loading-message">No testimonials found.</p></div>';
-                return;
-            }
+function fallbackAvatar(name) {
+    const letter = String(name || 'S').charAt(0).toUpperCase();
+    return `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+        <rect fill='%234f46e5' width='100' height='100' rx='50'/>
+        <text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'
+              fill='white' font-size='42' font-weight='800' font-family='sans-serif'>${letter}</text>
+    </svg>`;
+}
 
-            container.innerHTML = students.map((student, index) => `
-                <div class="testimonial-card">
-                    <div class="review-section">
-                        <div class="quote-mark">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" fill="currentColor"/>
-                            </svg>
-                        </div>
-                        <div class="review-content">${student.review || ''}</div>
-                        <div class="star-rating">
-                            ${createStars(student.rating)}
-                        </div>
-                    </div>
-                    <div class="student-info-section">
-                        <img src="${student.image}" 
-                             alt="${student.name}" 
-                             class="student-avatar"
-                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23f0f4ff%22 width=%22100%22 height=%22100%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23667eea%22 font-size=%2240%22 font-weight=%22700%22>${String(student.name || 'S').charAt(0)}</text></svg>'">
-                        <div class="student-details">
-                            <div class="student-name">${student.name || ''}</div>
-                            <div class="student-roll">${cleanRollNumber(student.roll_number || '')}</div>
-                            <span class="student-badge">${student.branch || ''}</span>
-                        </div>
-                    </div>
+// ── RENDER CARDS ──
+function renderCards(list) {
+    const grid = document.getElementById('grid');
+    if (!list || !list.length) {
+        grid.innerHTML = '<div class="loading-wrap"><p class="loading-txt">No testimonials found.</p></div>';
+        return;
+    }
+    grid.innerHTML = list.map((s, i) => `
+        <div class="card" style="animation-delay:${i * 40}ms">
+            <div class="card-review">
+                <div class="q-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
                 </div>
-            `).join('');
-        }
-
-        // Display students for current page
-        function displayStudents() {
-            isRandomMode = false;
-            const startIndex = (currentPage - 1) * studentsPerPage;
-            const endIndex = startIndex + studentsPerPage;
-            const studentsToShow = studentsData.slice(startIndex, endIndex);
-
-            displayStudentsArray(studentsToShow);
-            updatePagination();
-            document.getElementById('pagination').style.display = 'flex';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Update pagination
-        function updatePagination() {
-            const totalPages = Math.ceil(studentsData.length / studentsPerPage);
-            const pagination = document.getElementById('pagination');
-
-            let paginationHTML = `
-                <button class="pagination-btn" onclick="changePage(${currentPage - 1})"
-                        ${currentPage === 1 ? 'disabled' : ''}>
-                    ← Previous
-                </button>
-                <div class="page-numbers-container">
-            `;
-
-            const maxVisiblePages = 7;
-            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-            if (endPage - startPage < maxVisiblePages - 1) {
-                startPage = Math.max(1, endPage - maxVisiblePages + 1);
-            }
-
-            if (startPage > 1) {
-                paginationHTML += `<div class="page-num" onclick="changePage(1)">1</div>`;
-                if (startPage > 2) {
-                    paginationHTML += `<div class="page-indicator">...</div>`;
-                }
-            }
-
-            for (let i = startPage; i <= endPage; i++) {
-                paginationHTML += `
-                    <div class="page-num ${i === currentPage ? 'active' : ''}"
-                         onclick="changePage(${i})">
-                        ${i}
-                    </div>
-                `;
-            }
-
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    paginationHTML += `<div class="page-indicator">...</div>`;
-                }
-                paginationHTML += `<div class="page-num" onclick="changePage(${totalPages})">${totalPages}</div>`;
-            }
-
-            paginationHTML += `
+                <p class="review-text">${s.review || ''}</p>
+            </div>
+            <div class="card-student">
+                <img class="avatar"
+                     src="${s.image}"
+                     alt="${s.name || ''}"
+                     onerror="this.src='${fallbackAvatar(s.name)}'">
+                <div class="student-meta">
+                    <div class="s-name">${s.name || ''}</div>
+                    <div class="s-roll">${cleanRoll(s.roll_number)}</div>
+                    <span class="s-badge">${s.branch || ''}</span>
                 </div>
-                <div class="page-indicator">
-                    Page ${currentPage} of ${totalPages || 1}
-                </div>
-                <button class="pagination-btn" onclick="changePage(${currentPage + 1})"
-                        ${currentPage === totalPages ? 'disabled' : ''}>
-                    Next →
-                </button>
-            `;
+            </div>
+        </div>
+    `).join('');
+}
 
-            pagination.innerHTML = paginationHTML;
+// ── RANDOM ──
+function showRandomProfiles() {
+    if (!students.length) { alert('Please wait for data to load.'); return; }
+    randomMode = true;
+    const shuffled = [...students].sort(() => Math.random() - 0.5).slice(0, 10);
+    renderCards(shuffled);
+    document.getElementById('pagination').innerHTML = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── PAGINATED DISPLAY ──
+function displayStudents() {
+    randomMode = false;
+    const start = (page - 1) * PER_PAGE;
+    renderCards(students.slice(start, start + PER_PAGE));
+    buildPagination();
+    document.getElementById('pagination').style.display = 'flex';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── PAGINATION ──
+// Always shows: Prev | 1 2 3 ... lastPage | Next
+function buildPagination() {
+    const total = Math.ceil(students.length / PER_PAGE);
+    const pg = document.getElementById('pagination');
+    if (total <= 1) { pg.innerHTML = ''; return; }
+
+    // Always show pages 1, 2, 3, then "…", then last
+    const showPages = [];
+    const FIXED = 3; // always show first 3
+
+    for (let i = 1; i <= Math.min(FIXED, total); i++) showPages.push(i);
+
+    // If current page is beyond FIXED and not the last, include it + neighbors
+    if (page > FIXED && page < total) {
+        if (page - 1 > FIXED) showPages.push('…1');
+        if (page - 1 > FIXED) showPages.push(page - 1);
+        showPages.push(page);
+        if (page + 1 < total) showPages.push(page + 1);
+        if (page + 1 < total - 1) showPages.push('…2');
+    } else if (page > FIXED) {
+        if (page - 1 > FIXED) showPages.push('…1');
+    }
+
+    // Always show last
+    if (!showPages.includes(total)) {
+        if (showPages[showPages.length - 1] !== total - 1 &&
+            !String(showPages[showPages.length - 1]).startsWith('…')) {
+            showPages.push('…last');
         }
+        showPages.push(total);
+    }
 
-        // Change page
-        function changePage(page) {
-            const totalPages = Math.ceil(studentsData.length / studentsPerPage);
-            if (page < 1 || page > totalPages) return;
-            currentPage = page;
-            displayStudents();
+    let html = `
+        <button class="pg-btn" onclick="goPage(${page - 1})" ${page === 1 ? 'disabled' : ''}>← Prev</button>
+        <div class="pg-nums">
+    `;
+
+    showPages.forEach(p => {
+        if (String(p).startsWith('…')) {
+            html += `<span class="pg-dots">…</span>`;
+        } else {
+            html += `<div class="pg-num ${p === page ? 'active' : ''}" onclick="goPage(${p})">${p}</div>`;
         }
+    });
 
-        // Initialize
-        loadStudents();
-    </script>
+    html += `</div>
+        <button class="pg-btn" onclick="goPage(${page + 1})" ${page === total ? 'disabled' : ''}>Next →</button>`;
+
+    pg.innerHTML = html;
+}
+
+function goPage(p) {
+    const total = Math.ceil(students.length / PER_PAGE);
+    if (p < 1 || p > total) return;
+    page = p;
+    displayStudents();
+}
+
+// ── INIT ──
+loadStudents();
+</script>
 </body>
 </html>
