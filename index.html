@@ -570,32 +570,43 @@
         const studentsPerPage = 10;
         let isRandomMode = false;
 
-        // Load students data from Supabase
+        // Load students data from Supabase using getPublicUrl
         async function loadStudents() {
             try {
                 console.log('Loading students from Supabase...');
                 
-                // Fetch JSON from Supabase Storage
-                const { data: jsonData, error } = await supabase.storage
+                // Get public URL for JSON file
+                const { data: urlData } = supabase.storage
                     .from('data')
-                    .download('students_data.json');
+                    .getPublicUrl('students_data.json');
                 
-                if (error) {
-                    console.error('Supabase download error:', error);
-                    throw error;
+                console.log('JSON URL:', urlData.publicUrl);
+                
+                // Fetch JSON directly using the public URL
+                const response = await fetch(urlData.publicUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                // Convert blob to text and parse JSON
-                const text = await jsonData.text();
-                studentsData = JSON.parse(text);
+                studentsData = await response.json();
                 
-                console.log(`Loaded ${studentsData.length} students`);
+                console.log(`✓ Loaded ${studentsData.length} students successfully!`);
                 
-                // Update image URLs to point to Supabase Storage
-                studentsData = studentsData.map(student => ({
-                    ...student,
-                    image: `${SUPABASE_URL}/storage/v1/object/public/student-images/${student.image.replace('student_images/', '')}`
-                }));
+                // Update image URLs using getPublicUrl
+                studentsData = studentsData.map(student => {
+                    const imagePath = student.image.replace('student_images/', '');
+                    const { data: imageUrlData } = supabase.storage
+                        .from('student-images')
+                        .getPublicUrl(imagePath);
+                    
+                    return {
+                        ...student,
+                        image: imageUrlData.publicUrl
+                    };
+                });
+                
+                console.log('✓ Image URLs updated');
                 
                 // Update stats
                 document.getElementById('totalStudents').textContent = studentsData.length;
@@ -605,14 +616,15 @@
                 // Display first page
                 displayStudents();
             } catch (error) {
-                console.error('Error loading students:', error);
+                console.error('❌ Error loading students:', error);
                 document.getElementById('testimonials-container').innerHTML = 
                     `<div class="loading">
-                        <p>Error loading testimonials.</p>
-                        <p style="font-size: 0.9rem; margin-top: 1rem;">Please check:</p>
-                        <p style="font-size: 0.85rem;">1. Supabase buckets are public</p>
+                        <p style="color: #f59e0b; font-size: 1.2rem; font-weight: 600;">⚠️ Error loading testimonials</p>
+                        <p style="font-size: 0.95rem; margin-top: 1rem;">Error: ${error.message}</p>
+                        <p style="font-size: 0.85rem; margin-top: 1rem;">Please check:</p>
+                        <p style="font-size: 0.85rem;">1. Storage buckets exist and are public</p>
                         <p style="font-size: 0.85rem;">2. Files are uploaded correctly</p>
-                        <p style="font-size: 0.85rem;">3. Check browser console for details</p>
+                        <p style="font-size: 0.85rem;">3. Browser console (F12) for details</p>
                     </div>`;
             }
         }
@@ -629,6 +641,11 @@
 
         // Show random 10 profiles
         function showRandomProfiles() {
+            if (studentsData.length === 0) {
+                alert('Please wait for data to load first!');
+                return;
+            }
+            
             isRandomMode = true;
             const shuffled = shuffleArray(studentsData);
             const randomStudents = shuffled.slice(0, 10);
