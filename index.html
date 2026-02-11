@@ -190,19 +190,20 @@
             color: var(--text-3);
         }
 
-        /* ── SHUFFLE BUTTON ── */
+        /* ── CONTROL BUTTONS ── */
         .controls {
             display: flex;
             justify-content: center;
+            gap: 0.75rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
-        .shuffle-btn {
+        .shuffle-btn, .reset-btn {
             font-family: 'Plus Jakarta Sans', sans-serif;
             display: inline-flex;
             align-items: center;
             gap: 0.55rem;
-            background: linear-gradient(135deg, var(--indigo), var(--violet));
             color: #fff;
             border: none;
             padding: 0.85rem 2rem;
@@ -210,9 +211,13 @@
             font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(79,70,229,0.35);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             letter-spacing: 0.01em;
+        }
+
+        .shuffle-btn {
+            background: linear-gradient(135deg, var(--indigo), var(--violet));
+            box-shadow: 0 6px 20px rgba(79,70,229,0.35);
         }
 
         .shuffle-btn:hover {
@@ -220,11 +225,21 @@
             box-shadow: 0 10px 28px rgba(79,70,229,0.45);
         }
 
-        .shuffle-btn:active {
+        .reset-btn {
+            background: linear-gradient(135deg, #059669, #10b981);
+            box-shadow: 0 6px 20px rgba(16,185,129,0.35);
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(16,185,129,0.45);
+        }
+
+        .shuffle-btn:active, .reset-btn:active {
             transform: translateY(-1px);
         }
 
-        .dice {
+        .dice, .reset-icon {
             font-size: 1.15rem;
             transition: transform 0.4s ease;
             display: inline-block;
@@ -232,6 +247,10 @@
 
         .shuffle-btn:hover .dice {
             transform: rotate(180deg);
+        }
+
+        .reset-btn:hover .reset-icon {
+            transform: rotate(-180deg);
         }
 
         /* ── GRID ── */
@@ -260,43 +279,47 @@
             border-color: var(--indigo-light);
         }
 
-        /* Review section */
+        /* HIGHLIGHTED Review section */
         .card-review {
-            padding: 1.25rem 1.25rem 1rem;
+            padding: 1.5rem 1.5rem 1.25rem;
             flex: 1;
             position: relative;
+            /* HIGHLIGHTED BACKGROUND */
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+            border-bottom: 2px solid var(--indigo-pale);
         }
 
-        .q-icon {
-            width: 34px;
-            height: 34px;
-            background: linear-gradient(135deg, var(--indigo), var(--violet));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0.9rem;
-            flex-shrink: 0;
+        .card:hover .card-review {
+            background: linear-gradient(135deg, #e8eeff 0%, #dfe6ff 100%);
         }
 
-        .q-icon svg {
-            width: 16px;
-            height: 16px;
-            fill: white;
-        }
-
+        /* HIGHLIGHTED review text with proper quotes */
         .review-text {
-            font-size: 0.93rem;
-            line-height: 1.7;
-            color: var(--text-2);
-            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--text-1);
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .review-text::before {
+            content: '"';
+            font-family: Georgia, serif;
+            color: var(--indigo);
+            opacity: 0.5;
+        }
+
+        .review-text::after {
+            content: '"';
+            font-family: Georgia, serif;
+            color: var(--indigo);
+            opacity: 0.5;
         }
 
         /* Student section */
         .card-student {
-            padding: 0.9rem 1.25rem;
-            background: var(--bg);
-            border-top: 1px solid var(--border);
+            padding: 1rem 1.25rem;
+            background: var(--surface);
             display: flex;
             align-items: center;
             gap: 0.85rem;
@@ -307,7 +330,7 @@
             height: 52px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--surface);
+            border: 3px solid var(--bg);
             box-shadow: var(--shadow-xs);
             flex-shrink: 0;
         }
@@ -318,29 +341,22 @@
         }
 
         .s-name {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-1);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 0.15rem;
-        }
-
-        .s-roll {
-            font-size: 0.78rem;
-            color: var(--text-3);
-            font-weight: 500;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.4rem;
         }
 
         .s-badge {
             display: inline-block;
-            padding: 0.22rem 0.6rem;
+            padding: 0.25rem 0.7rem;
             background: var(--indigo-pale);
             color: var(--indigo);
             border-radius: 6px;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
@@ -484,14 +500,15 @@
             .stat-value { font-size: 1.9rem; }
             .main { padding: 1.75rem 0.75rem 2.5rem; }
             .grid { grid-template-columns: 1fr; gap: 1rem; }
-            .card-review { padding: 1rem 1rem 0.85rem; }
-            .card-student { padding: 0.8rem 1rem; }
+            .card-review { padding: 1.25rem 1.25rem 1rem; }
+            .card-student { padding: 0.9rem 1rem; }
             .avatar { width: 44px; height: 44px; }
-            .s-name { font-size: 0.85rem; }
+            .s-name { font-size: 0.88rem; }
             .pg-num { width: 34px; height: 34px; font-size: 0.8rem; }
             .pg-btn { padding: 0.5rem 0.85rem; font-size: 0.8rem; }
-            .shuffle-btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+            .shuffle-btn, .reset-btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
             .sec-title { font-size: 1.35rem; }
+            .controls { gap: 0.5rem; }
         }
 
         @media (max-width: 400px) {
@@ -508,6 +525,11 @@
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(16px); }
             to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hide reset button initially */
+        .reset-btn.hidden {
+            display: none;
         }
     </style>
 </head>
@@ -550,6 +572,10 @@
         <button class="shuffle-btn" onclick="showRandomProfiles()">
             <span class="dice">🎲</span>
             Show 10 Random Reviews
+        </button>
+        <button class="reset-btn hidden" id="resetBtn" onclick="resetToPagination()">
+            <span class="reset-icon">↻</span>
+            Back to All Reviews
         </button>
     </div>
 
@@ -644,8 +670,6 @@ async function loadStudents() {
 }
 
 // ── HELPERS ──
-function cleanRoll(r) { return String(r || '').replace(/^AIK/, ''); }
-
 function fallbackAvatar(name) {
     const letter = String(name || 'S').charAt(0).toUpperCase();
     return `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
@@ -665,11 +689,6 @@ function renderCards(list) {
     grid.innerHTML = list.map((s, i) => `
         <div class="card" style="animation-delay:${i * 40}ms">
             <div class="card-review">
-                <div class="q-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                    </svg>
-                </div>
                 <p class="review-text">${s.review || ''}</p>
             </div>
             <div class="card-student">
@@ -679,7 +698,6 @@ function renderCards(list) {
                      onerror="this.src='${fallbackAvatar(s.name)}'">
                 <div class="student-meta">
                     <div class="s-name">${s.name || ''}</div>
-                    <div class="s-roll">${cleanRoll(s.roll_number)}</div>
                     <span class="s-badge">${s.branch || ''}</span>
                 </div>
             </div>
@@ -693,8 +711,22 @@ function showRandomProfiles() {
     randomMode = true;
     const shuffled = [...students].sort(() => Math.random() - 0.5).slice(0, 10);
     renderCards(shuffled);
-    document.getElementById('pagination').innerHTML = '';
+    
+    // Hide pagination and show reset button
+    document.getElementById('pagination').style.display = 'none';
+    document.getElementById('resetBtn').classList.remove('hidden');
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── RESET TO PAGINATION ──
+function resetToPagination() {
+    randomMode = false;
+    page = 1; // Reset to first page
+    displayStudents();
+    
+    // Hide reset button
+    document.getElementById('resetBtn').classList.add('hidden');
 }
 
 // ── PAGINATED DISPLAY ──
@@ -704,6 +736,10 @@ function displayStudents() {
     renderCards(students.slice(start, start + PER_PAGE));
     buildPagination();
     document.getElementById('pagination').style.display = 'flex';
+    
+    // Hide reset button in pagination mode
+    document.getElementById('resetBtn').classList.add('hidden');
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
